@@ -90,12 +90,21 @@ class BowlingScoreTests: XCTestCase {
         automaticBowlingScorer.roll(frameScore: [10,0,10,8])
         XCTAssertEqual(automaticBowlingScorer.scoreSoFar(), 176)
         
+        
+        
         let isGameOver = automaticBowlingScorer.gameIsOver()
         XCTAssertTrue(isGameOver)
     }
     
     func testCommulativeScoreForEachFrame() {
-        
+        let automaticBowlingScorer = AutomaticBowlingScorer()
+        //Frame 1
+        let cummulativeScore = automaticBowlingScorer.roll(frameScore: [9,1])
+        XCTAssertEqual(cummulativeScore, [10])
+        //Frame 2
+        XCTAssertEqual(automaticBowlingScorer.roll(frameScore: [0,10]), [10, 10])
+        // Frame 3
+        XCTAssertEqual(automaticBowlingScorer.roll(frameScore: [10,0]), [10, 20, 10])
     }
     
 }
